@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Transaction>;
+
+<h1 class="text-center">Office Transactions</h1>
+<a asp-action="Create">Add Trasanction</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Credit</th>
+            <th>Debit</th>
+            <th>Balance</th>
+        </tr>
+     
+    </thead>
+     <tbody>
+        @foreach(var i in Model)
+        {
+            <tr>
+            <td>@i.Date.ToString("dd/MM/yyyy")</td>
+            <td>@i.Description</td>
+                @if (i.Type.ToString() == "Credit")
+                {
+                <td>
+                        @i.Amount
+                </td>
+                }
+                else
+                {
+                <td></td>
+                }
+                @if (i.Type.ToString() == "Debit")
+                {
+                <td>
+                        @i.Amount
+                </td>
+                }
+                else
+                {
+                <td></td>
+                }
+            <td>@i.Balance</td>
+            </tr>
+            
+        }
+    </tbody>
+</table>
